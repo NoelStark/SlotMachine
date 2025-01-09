@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SlotMachine.Views.AchievementView"
+             Title="AchievementView">
+    <VerticalStackLayout BackgroundColor="{StaticResource Primary}">
+        <Label Text="Achievements" FontSize="28" FontAttributes="Bold" TextColor="White" Margin="20,20,0,0"/>
+        <CollectionView ItemsSource="{Binding Achievements}" Margin="20,20,20,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="20" BackgroundColor="{StaticResource DarkBlue100}" BorderColor="{StaticResource BorderColor}" Margin="0,0,0,10">
+                        <Grid RowDefinitions="*,*,*,*,*" RowSpacing="10">
+                            <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" Grid.Row="0" TextColor="White" />
+                            <Label Text="{Binding Description}" FontSize="14" Grid.Row="1" TextColor="White"/>
+                            <Grid BackgroundColor="Transparent" HorizontalOptions="Start" Grid.Row="2" Padding="0" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                
+                                <Grid BackgroundColor="LightGray" HeightRequest="20" WidthRequest="200" Grid.Column="0">
+                                    <BoxView BackgroundColor="Green" HorizontalOptions="Start"
+                                        WidthRequest="{Binding ProgressPrecentage, Converter={StaticResource FractionToWidthConverter}, ConverterParameter=200}" Grid.Column="0"/>
+                                </Grid>
+                                    <Label Text="{Binding ProgressText}" TextColor="White" Grid.Column="1"/>
+                            </Grid>
+                           
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

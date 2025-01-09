@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SlotMachine.ViewModels"
+             x:DataType="vm:PaymentViewModel"
+             x:Class="SlotMachine.Views.PaymentView"
+             Title="PaymentView">
+    <VerticalStackLayout BackgroundColor="{StaticResource Primary}">
+
+        <Label Margin="20,20,20,0" Text="Payment Methods" FontSize="24" TextColor="White" FontAttributes="Bold"/>
+        <Grid Margin="20">
+            <Frame BackgroundColor="{StaticResource DarkBlue100}" BorderColor="{StaticResource BorderColor}">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="20">
+                    <Image Source="googlepay.png" Grid.Column="0" WidthRequest="80"/>
+                    <VerticalStackLayout Grid.Column="1">
+
+                        <Label Text="Google Pay" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                        <Label Text="**** **1234" TextColor="White" FontSize="16"/>
+                    </VerticalStackLayout>
+                    <Frame Grid.Column="2" WidthRequest="80" HeightRequest="40" 
+                           BackgroundColor="{StaticResource ActiveButton}" BorderColor="{StaticResource BorderColor}">
+                        <ImageButton Source="arrowup.png"  WidthRequest="24" HeightRequest="40" Command="{Binding PayCommand}"/>
+                    </Frame>
+                </Grid>
+            </Frame>
+            
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

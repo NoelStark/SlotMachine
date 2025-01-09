@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+    
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+            xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+            xmlns:vm="clr-namespace:SlotMachine.ViewModels.SlotViewModels"
+            x:DataType="vm:SlotViewModel"
+            x:Class="SlotMachine.Views.MainPage">
+<ContentPage.Resources>
+    <ResourceDictionary>
+        <DataTemplate x:Key="ReelTemplate">
+            <Label Text="{Binding .}" FontSize="48" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </DataTemplate>
+    </ResourceDictionary>
+</ContentPage.Resources>
+    
+<Grid>
+    <VerticalStackLayout Padding="20" Spacing="10" HorizontalOptions="Center" BackgroundColor="{DynamicResource Primary}">
+        <Label Text="Slot Machine" FontSize="32" HorizontalOptions="Center" TextColor="White"/>
+        <Label x:Name="CreditsLabel" Text="{Binding Credits, StringFormat='Credits: {0}'}" FontSize="24" HorizontalOptions="Center" TextColor="White"/>
+
+        <!-- Reels -->
+            <Frame BackgroundColor="{DynamicResource Primary}" BorderColor="{DynamicResource BorderColor}">
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*" HorizontalOptions="Center" ColumnSpacing="10">
+                <!--Reel 1-->
+                    <Frame Grid.Column="0" BackgroundColor="{DynamicResource DarkBlue100}" BorderColor="{DynamicResource BorderColor}">
+                        <CollectionView x:Name="Reel1View" ItemsSource="{Binding Reel1Stack}" VerticalOptions="Center" ItemTemplate="{StaticResource ReelTemplate}"/>
+                </Frame>
+                
+                <!--Reel 2-->
+                    <Frame Grid.Column="1" BackgroundColor="{DynamicResource DarkBlue100}" BorderColor="{DynamicResource BorderColor}">
+                    <CollectionView x:Name="Reel2View" ItemsSource="{Binding Reel2Stack}" VerticalOptions="Center" ItemTemplate="{StaticResource ReelTemplate}"/>
+                </Frame>
+                
+                <!--Reel 3-->
+                    <Frame Grid.Column="2" BackgroundColor="{DynamicResource DarkBlue100}" BorderColor="{DynamicResource BorderColor}">
+                    <CollectionView x:Name="Reel3View" ItemsSource="{Binding Reel3Stack}" VerticalOptions="Center" ItemTemplate="{StaticResource ReelTemplate}"/>
+                </Frame>
+                <!--Mid Frame-->
+                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
+                        Grid.Row="0" Grid.ColumnSpan="3"
+                        HeightRequest="70" Margin="10,5,10,0"
+                        BackgroundColor="Transparent" BorderColor="#730408"/>
+
+            </Grid>
+        </Frame>
+        <!--Input Frame-->
+            <Frame BackgroundColor="{DynamicResource DarkBlue100}" HorizontalOptions="FillAndExpand" HeightRequest="60" BorderColor="Transparent">
+            <Grid HeightRequest="40" ColumnDefinitions="Auto,*, Auto" HorizontalOptions="FillAndExpand" ColumnSpacing="30">
+                <HorizontalStackLayout Spacing="10">
+                    <Image Source="dollar.png" WidthRequest="24" Grid.Column="0"/>
+                    <BoxView HeightRequest="30" WidthRequest="2" BackgroundColor="#39384E"/>
+                </HorizontalStackLayout>
+                <Entry Grid.Column="1" HeightRequest="50" VerticalOptions="Center" 
+                       TextColor="White" FontSize="18" Text="{Binding Amount, Mode=TwoWay}" Keyboard="Numeric"/>
+                <HorizontalStackLayout HorizontalOptions="End" Spacing="10" Grid.Column="2">
+                        <Button Text="1/2" BackgroundColor="{DynamicResource InactiveButton}" Padding="0" Command="{Binding HalfAmountCommand}"/>
+                        <Button Text="2x" BackgroundColor="{DynamicResource InactiveButton}" Padding="0" Command="{Binding DoubleAmountCommand}"/>
+                        <Button Text="Max" TextColor="{DynamicResource TextColor}"
+                                BackgroundColor="{DynamicResource ActiveButton}" Padding="0"
+                                Command="{Binding MaxAmountCommand}"/>
+                </HorizontalStackLayout>
+            </Grid>
+        </Frame>
+        <!--Auto Spin-->
+        <HorizontalStackLayout>
+                <CheckBox VerticalOptions="Center" Color="{DynamicResource ActiveButton}" IsChecked="{Binding IsChecked}"/>
+            <Label Text="Auto Spin" TextColor="White" VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+
+        <!--Spin Button-->
+        <Button Text="{Binding SpinBtnText}" FontSize="24" FontAttributes="Bold" TextColor="{DynamicResource TextColor}"            
+                    BackgroundColor="{DynamicResource ActiveButton}" BorderColor="{DynamicResource BorderColor}" BorderWidth="1" 
+                    Command="{Binding SpinCommand}"/>
+        <Label Text="{Binding TimeLeftForRefill}" TextColor="{DynamicResource FineprintColor}" HorizontalOptions="Center"/>
+
+    </VerticalStackLayout>
+        <skia:SKLottieView
+            Source = "confetti.json"
+            HorizontalOptions = "Center"
+            VerticalOptions ="Center"
+            HeightRequest = "400"
+            WidthRequest = "400"
+            IsAnimationEnabled = "{Binding IsAnimationEnabled}"
+            IsVisible="{Binding IsAnimationVisible}"/>
+        <ContentView Content="{Binding AnimationContent}" />
+</Grid>
+
+</ContentPage>

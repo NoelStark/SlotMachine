@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:vm="clr-namespace:SlotMachine.ViewModels"
+             xmlns:model="clr-namespace:SlotMachine.Models"
+             x:DataType="vm:StatisticsViewModel"
+             x:Class="SlotMachine.Views.StatisticsView"
+             Title="StatisticsView">
+    <VerticalStackLayout BackgroundColor="{StaticResource Primary}">
+        
+        <Grid  HeightRequest="225" RowDefinitions="Auto,*">
+            <Label Text="History"  FontSize="24" FontAttributes="Bold" TextColor="White" Padding="20,20,0,0" Grid.Row="0"/>
+
+                <CollectionView ItemsSource="{Binding Records}" Grid.Row="1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Record">
+                        <Frame HeightRequest="60" Margin="20,20,20,0" BackgroundColor="{StaticResource DarkBlue100}" Padding="10" BorderColor="{StaticResource BorderColor}">
+                                <Grid ColumnDefinitions="*,*,*">
+                                    <Image Source="dollarchart.png" Grid.Column="0" VerticalOptions="Center" WidthRequest="32" HorizontalOptions="Start" Margin="10,0,0,0" />
+
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start">
+                                        <Label Text="{Binding Category}" TextColor="White" FontAttributes="Bold" FontSize="16" />
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" Padding="10">
+                                        <Label Text="{Binding Value, StringFormat='${0:F2}'}" TextColor="Green" FontSize="16" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+            </Grid>
+        <BoxView HorizontalOptions="FillAndExpand" Color="DimGray" HeightRequest="2" Margin="20,20,20,0"/>
+
+        <!--Total Winnings-->
+        <Grid ColumnDefinitions="*,Auto" Margin="0,20,0,0" HorizontalOptions="Center">
+            <Image Source="dollar.png" Grid.Column="0" VerticalOptions="End" Margin="0,0,0,4"/>
+            <VerticalStackLayout  Grid.Column="1" HorizontalOptions="Center">
+                <Label Text="Winnings:" FontSize="16" HorizontalOptions="Center" TextColor="White" Grid.Row="0"/>
+                <Label Text="10 123" FontSize="24" TextColor="White"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <BoxView HorizontalOptions="FillAndExpand" Color="DimGray" HeightRequest="2" Margin="20,20,20,0"/>
+
+
+        <Grid RowDefinitions="*,*">
+            <Label Text="Statistics: " FontSize="24" FontAttributes="Bold" TextColor="White" Padding="40,20,0,0" Grid.Row="0"/>
+                <chart:SfCartesianChart VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20" Grid.Row="1">
+                    <!-- X Axis -->
+                    <chart:SfCartesianChart.XAxes>
+                        <chart:CategoryAxis>
+                        </chart:CategoryAxis>
+                    </chart:SfCartesianChart.XAxes>
+
+                    <!-- Y Axis -->
+                    <chart:SfCartesianChart.YAxes>
+                        <chart:NumericalAxis>
+                        </chart:NumericalAxis>
+                    </chart:SfCartesianChart.YAxes>
+
+                    <!--Winnings Data-->
+                    <chart:SfCartesianChart.Series>
+                        <chart:ColumnSeries ItemsSource="{Binding Windata}" XBindingPath="Category" YBindingPath="Value">
+                            <chart:ColumnSeries.DataLabelSettings>
+                                <chart:CartesianDataLabelSettings />
+                            </chart:ColumnSeries.DataLabelSettings>
+                        </chart:ColumnSeries>
+                    </chart:SfCartesianChart.Series>
+                </chart:SfCartesianChart>
+            </Grid>
+  
+
+    </VerticalStackLayout>
+
+</ContentPage>

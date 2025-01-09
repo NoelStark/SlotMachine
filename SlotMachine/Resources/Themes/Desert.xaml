@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SlotMachine.Resources.Themes.Desert">
+    
+    <Color x:Key="Background">#5F2411</Color>
+    <!--Primary Background-->
+    <Color x:Key="Primary">#864733</Color>
+    <!--Secondary Background-->
+    <Color x:Key="DarkBlue100">#A5583C</Color>
+    <!--Border Color-->
+    <Color x:Key="BorderColor">#D9B6A3</Color>
+    <!--Deactive Button Color-->
+    <Color x:Key="InactiveButton">#9F7831</Color>
+    <!--Active Button Color-->
+    <Color x:Key="ActiveButton">#EEBB5E</Color>
+    <!--Text Color-->
+    <Color x:Key="TextColor">#1E1E1E</Color>
+    <!--Active Button Color-->
+    <Color x:Key="FineprintColor">#C0ACA9</Color>
+
+
+</ResourceDictionary>

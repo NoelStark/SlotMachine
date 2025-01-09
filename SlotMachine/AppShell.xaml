@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SlotMachine.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SlotMachine.Views"
+    xmlns:views="Slot"
+    Shell.FlyoutBehavior="Flyout"
+    Title="SlotMachine">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+    <ShellContent
+        Title="Statistics"
+        ContentTemplate="{DataTemplate local:StatisticsView}"
+        Route="StatisticsView" />
+    <ShellContent
+        Title="Achievements"
+        ContentTemplate="{DataTemplate local:AchievementView}"
+        Route="AchievementView" />
+    <ShellContent
+        Title="Shop"
+        ContentTemplate="{DataTemplate local:ShopView}"
+        Route="ShopView" />
+    <ShellContent
+      Title="Payment"
+      ContentTemplate="{DataTemplate local:PaymentView}"
+      Route="PaymentView" />
+    <ShellContent
+       Title="Theme"
+       ContentTemplate="{DataTemplate local:ThemeView}"
+       Route="ThemeView" />
+
+</Shell>

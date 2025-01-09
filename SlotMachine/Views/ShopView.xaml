@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SlotMachine.ViewModels"
+             xmlns:models="clr-namespace:SlotMachine.Models"
+             x:Class="SlotMachine.Views.ShopView"
+             x:DataType="vm:ShopViewModel"
+             Title="ShopView">
+<ScrollView>
+    <VerticalStackLayout BackgroundColor="{StaticResource Primary}">
+        <Label Text="Credits" TextColor="White" Margin="20" FontSize="28"/>
+            <CollectionView ItemsSource="{Binding ShopItems}" Margin="20">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ShopItem">
+                        <Frame BackgroundColor="{StaticResource DarkBlue100}" BorderColor="{StaticResource BorderColor}" Margin="0,0,0,10">
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="20">
+                                <Image Source="{Binding ImageSource}" Grid.Column="0" WidthRequest="80"/>
+                                <Label Text="{Binding Credits}" FontSize="20" TextColor="White" VerticalOptions="Center" Grid.Column="1"/>
+                                <!--<Grid ColumnDefinitions="Auto, *" BackgroundColor="{StaticResource ActiveButton}" Grid.Column="2" ColumnSpacing="10">
+                                    <Image Source="dollar.png" Grid.Column="0" WidthRequest="32" />
+                                    <Label Text="{Binding Price}" Grid.Column="1" VerticalOptions="Center" TextColor="White" FontSize="20"/>
+                                </Grid>-->
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ShopViewModel}}, Path=BuyItemCommand}" 
+                                            CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+       
+        <Label Text="Themes" TextColor="White" Margin="20" FontSize="28"/>
+    </VerticalStackLayout>
+</ScrollView>
+</ContentPage>
