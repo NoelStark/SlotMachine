@@ -18,7 +18,11 @@
     
 <Grid>
     <VerticalStackLayout Padding="20" Spacing="10" HorizontalOptions="Center" BackgroundColor="{DynamicResource Primary}">
-        <Label Text="Slot Machine" FontSize="32" HorizontalOptions="Center" TextColor="White"/>
+        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="25">
+            <Label Grid.Column="0" Text="Slot Machine" FontSize="32" HorizontalOptions="End" TextColor="White"/>
+            <Button Grid.Column="1" Text="{Binding CurrentTheme}" HorizontalOptions="End" TextColor="White" BackgroundColor="{DynamicResource InactiveButton}"
+                   Command="{Binding SwitchThemeCommand}"/>
+        </Grid>
         <Label x:Name="CreditsLabel" Text="{Binding Credits, StringFormat='Credits: {0}'}" FontSize="24" HorizontalOptions="Center" TextColor="White"/>
 
         <!-- Reels -->

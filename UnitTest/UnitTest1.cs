@@ -10,12 +10,14 @@ namespace UnitTest
     {
         private readonly Mock<AchievementManager> _achievementMock;
         private readonly Mock<GameService> _gameServiceMock;
+        private readonly Mock<IVibrationService> _vibrationServiceMock;
         private readonly SlotViewModel _slotViewModel;
         public UnitTest1()
         {
             _achievementMock = new Mock<AchievementManager>();
             _gameServiceMock = new Mock<GameService>(_achievementMock.Object);
-            _slotViewModel = new SlotViewModel(_gameServiceMock.Object)
+            _vibrationServiceMock = new Mock<IVibrationService>();
+            _slotViewModel = new SlotViewModel(_gameServiceMock.Object, _vibrationServiceMock.Object)
             {
                 Reel1Stack = new ObservableCollection<string> { "🍎", "🍒", "🍇" },
                 Reel2Stack = new ObservableCollection<string> { "🍎", "🍒", "🍇" },

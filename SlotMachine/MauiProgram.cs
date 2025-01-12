@@ -1,10 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using SlotMachine.Services;
 using SlotMachine.ViewModels;
 using SlotMachine.ViewModels.SlotViewModels;
 using SlotMachine.Views;
 using Syncfusion.Maui.Core.Hosting;
+using Microsoft.Maui.Hosting;
+
 #if ANDROID
 using Android.Content.Res;
 using Android.Graphics;
@@ -22,6 +25,8 @@ namespace SlotMachine
                 .ConfigureSyncfusionCore()
                 .UseSkiaSharp();
 
+            builder.Services.AddSingleton<IVibrationService, VibrationService>();
+
             builder.Services.AddSingleton<SlotViewModel>();
             builder.Services.AddSingleton<GameService>();
 
@@ -30,7 +35,7 @@ namespace SlotMachine
             builder.Services.AddTransient<AchievementView>();
 
             builder.Services.AddSingleton<StatisticsViewModel>();
-            builder.Services.AddSingleton<StatisticsView>();
+            builder.Services.AddTransient<StatisticsView>();
 
             builder.Services.AddSingleton<MainPage>();
 
@@ -40,10 +45,8 @@ namespace SlotMachine
             builder.Services.AddSingleton<PaymentView>();
             builder.Services.AddSingleton<PaymentViewModel>();
 
-            builder.Services.AddSingleton<ThemeView>();
-            builder.Services.AddSingleton<ThemeViewModel>();
-
             builder.Services.AddSingleton<PaymentView>();
+
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoUnderline", (handler, view) =>
             {
 #if ANDROID
@@ -51,6 +54,8 @@ namespace SlotMachine
                     ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
 #endif
             });
+
+
 
 #if DEBUG
             builder.Logging.AddDebug();

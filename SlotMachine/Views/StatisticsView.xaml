@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
              xmlns:vm="clr-namespace:SlotMachine.ViewModels"
+             xmlns:viewModels="clr-namespace:SlotMachine.ViewModels.SlotViewModels"
              xmlns:model="clr-namespace:SlotMachine.Models"
              x:DataType="vm:StatisticsViewModel"
              x:Class="SlotMachine.Views.StatisticsView"
              Title="StatisticsView">
     <VerticalStackLayout BackgroundColor="{StaticResource Primary}">
         
-        <Grid  HeightRequest="225" RowDefinitions="Auto,*">
+        <Grid  HeightRequest="300" RowDefinitions="Auto,*">
             <Label Text="History"  FontSize="24" FontAttributes="Bold" TextColor="White" Padding="20,20,0,0" Grid.Row="0"/>
 
                 <CollectionView ItemsSource="{Binding Records}" Grid.Row="1">
@@ -34,17 +35,6 @@
 
 
             </Grid>
-        <BoxView HorizontalOptions="FillAndExpand" Color="DimGray" HeightRequest="2" Margin="20,20,20,0"/>
-
-        <!--Total Winnings-->
-        <Grid ColumnDefinitions="*,Auto" Margin="0,20,0,0" HorizontalOptions="Center">
-            <Image Source="dollar.png" Grid.Column="0" VerticalOptions="End" Margin="0,0,0,4"/>
-            <VerticalStackLayout  Grid.Column="1" HorizontalOptions="Center">
-                <Label Text="Winnings:" FontSize="16" HorizontalOptions="Center" TextColor="White" Grid.Row="0"/>
-                <Label Text="10 123" FontSize="24" TextColor="White"/>
-            </VerticalStackLayout>
-        </Grid>
-
         <BoxView HorizontalOptions="FillAndExpand" Color="DimGray" HeightRequest="2" Margin="20,20,20,0"/>
 
 

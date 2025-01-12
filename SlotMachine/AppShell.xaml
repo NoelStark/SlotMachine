@@ -28,9 +28,5 @@
       Title="Payment"
       ContentTemplate="{DataTemplate local:PaymentView}"
       Route="PaymentView" />
-    <ShellContent
-       Title="Theme"
-       ContentTemplate="{DataTemplate local:ThemeView}"
-       Route="ThemeView" />
 
 </Shell>

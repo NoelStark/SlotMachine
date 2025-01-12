@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using SlotMachine.Services;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,12 @@ namespace SlotMachine.ViewModels.SlotViewModels
         public double jackpot = 100;
         private DateTime _lastRefillTime;
         private const int RefillIntervalSeconds = 60;
+        private bool isSpinning;
+        public ObservableCollection<string> ThemeCollection { get; set; } = new ObservableCollection<string>
+        {
+            "Standard",
+            "Desert"
+        };
 
         [ObservableProperty]
         public ObservableCollection<string> reel1Stack = new ObservableCollection<string>() { "🍎", "🍒", "🍇" };
@@ -55,6 +62,12 @@ namespace SlotMachine.ViewModels.SlotViewModels
         private bool isAnimationVisible = false;
 
         private bool _isUpdatingAmount = false;
+        [ObservableProperty]
+        private string currentTheme = "Standard";
+
+        public static int amountOfSmallWins { get; set; } = 0;
+        public static int amountOfJackpot { get; set; } = 0;
+        public static int amountOfLosses { get; set; } = 0;
 
 
         public CollectionView Reel1View { get; set; } = new CollectionView();

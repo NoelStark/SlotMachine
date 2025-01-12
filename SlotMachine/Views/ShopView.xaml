@@ -30,8 +30,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-       
-        <Label Text="Themes" TextColor="White" Margin="20" FontSize="28"/>
     </VerticalStackLayout>
 </ScrollView>
 </ContentPage>
